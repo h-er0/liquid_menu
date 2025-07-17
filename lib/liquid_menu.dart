@@ -22,17 +22,12 @@ class _LiquidMenuState extends State<LiquidMenu> with TickerProviderStateMixin {
 
   void _initializeCircles() {
     if (!_isInit) {
-      // Define metaball circles with positions, radii, and scaling origins
+      // Define metaball circles with positions, radius, and scaling origins
       _circles = [
         // Circle starting from the menu button (top-left)
         MetaballCircle(
-          position: Offset(34, MediaQuery.paddingOf(context).top + 30),
+          position: Offset(16, MediaQuery.paddingOf(context).top),
           scaleOrigin: Alignment.topLeft,
-          baseRadius:
-              37, // Sets initial size of the circle; small radius keeps container compact
-          radius:
-              37, // Initial radius matches baseRadius; small values may cause slightly blurred contours in V1 due to blur filter
-          // Note: If radius is too small, the container may not appear due to rendering issues
           scaledRadius: 300, // Target radius when expanded
         ),
         // Circle from top-right outside the screen
@@ -178,7 +173,10 @@ class _LiquidMenuState extends State<LiquidMenu> with TickerProviderStateMixin {
                   height: 40,
                   width: 40,
                   clipBehavior: Clip.none,
-                  color: Colors.transparent,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
                   child: AnimatedOpacity(
                     opacity: _showMenu ? 0 : 1.0,
                     duration: const Duration(milliseconds: 1000),
